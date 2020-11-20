@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<meta name="msapplication-TileColor" content="#00aba9">
+	<meta name="theme-color" content="#ffffff">
+	<link rel="stylesheet" href="./style/style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+		integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link
+		href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap"
+		rel="stylesheet">
+	<title>Avito Glo Academy</title>
+	<script src="scripts/script.js" defer></script>
+</head>
+
+<body>
+
+	<header>
+		<div class="container">
+			<div class="header">
+				<i class="fas fa-bars burger-menu"></i>
+				<div class="logo">
+					<a href="index.html">
+						<img src="img/logo.svg" alt="">
+					</a>
+				</div>
+				<nav class="menu">
+					<ul class="menu__container">
+						<li class="menu__link"><a href="#" data-category="cloth">Одежда</a></li>
+						<li class="menu__link"><a href="#" data-category="foot">Обувь</a></li>
+						<li class="menu__link"><a href="#" data-category="toy">Игрушки</a></li>
+						<li class="menu__link"><a href="#" data-category="furniture">Мебель</a></li>
+						<li class="menu__link"><a href="#" data-category="tech">Техника</a></li>
+					</ul>
+				</nav>
+				<i class="fas fa-chevron-circle-down menu__open"></i>
+				<button class="btn add__ad">
+					Подать объявление
+				</button>
+				<i class="fas fa-plus add__ad plus"></i>
+				<i class="fas fa-shopping-basket basket"></i>
+				<i class="fas fa-user user"></i>
+			</div>
+			<div class="search">
+				<form class="search__form">
+					<label class="search__label">
+						<input class="search__input" type="search">
+					</label>
+				</form>
+			</div>
+
+		</div>
+	</header>
+
+	<main>
+
+		<div class="container">
+			<ul class="catalog">
+				<!-- js -->
+			</ul>
+		</div>
+
+
+	</main>
+
+	<div class="modal modal__add hide">
+		<div class="modal__block">
+			<h2 class="modal__header">Подать Объявление</h2>
+			<div class="modal__content">
+				<div><img class="modal__image modal__image-add" src="img/temp.jpg" alt="test"></div>
+				<form class="modal__submit">
+					<label class="modal__file-label">
+						<span class="btn modal__file-btn">Добавить фото</span>
+						<input class="modal__file-input" type="file" name="image" accept="image/*" required>
+					</label>
+
+					<label>
+						<span>Категория:</span>
+						<select name="category">
+							<option value="toy">Игрушки</option>
+							<option value="furniture">Мебель</option>
+							<option value="foot">Обувь</option>
+							<option value="cloth">Одежда</option>
+							<option value="tech">Техника</option>
+						</select>
+					</label>
+
+					<label>
+						<span>Название:</span>
+						<input name="nameItem" type="text" required>
+					</label>
+
+					<label>
+						<span>Состояние:</span>
+						<select name="status">
+							<option value="old">Б/у</option>
+							<option value="new">Новый</option>
+						</select>
+					</label>
+
+
+					<label>
+						<span>Описание:</span>
+						<textarea name="descriptionItem" maxlength="3000" required></textarea>
+					</label>
+
+					<label>
+						<span>Цена:</span>
+						<input name="costItem" type="number" required>
+					</label>
+					<div class="modal__btn-block">
+						<span class="modal__btn-warning">Заполните все поля</span>
+						<button class="btn modal__btn-submit">Отправить</button>
+					</div>
+				</form>
+			</div>
+			<button class="modal__close">&#10008;</button>
+		</div>
+	</div>
+
+	<div class="modal modal__item hide">
+		<div class="modal__block">
+			<h2 class="modal__header">Купить</h2>
+			<div class="modal__content">
+				<div><img class="modal__image modal__image-item" src="img/temp.jpg" alt="test"></div>
+				<div class="modal__description">
+					<h3 class="modal__header-item">Тестовый Телефон</h3>
+					<p>Состояние: <span class="modal__status-item">отличное</span></p>
+					<p>Описание:
+						<span class="modal__description-item">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							Amet, aut deleniti dolores ex explicabo fugit hic?</span>
+					</p>
+					<p>Цена: <span class="modal__cost-item">4000 ₽</span></p>
+					<button class="btn-buy modal__buy-item">Купить</button>
+				</div>
+			</div>
+			<button class="modal__close">&#10008;</button>
+		</div>
+	</div>
+
+	<div class="modal modal__basket hide">
+		<div class="basket__block">
+			<h2 class="modal__header basket__modal-name">Корзина</h2>
+			<button class="modal__close">&#10008;</button>
+			<div class="basket__content">
+				<!-- js -->
+			</div>
+		</div>
+	</div>
+
+	<div class="modal modal__orders hide">
+		<div class="basket__block">
+			<h2 class="modal__header basket__modal-name">Заказы</h2>
+			<button class="modal__close">&#10008;</button>
+			<div class="orders__content">
+				<!-- js -->
+			</div>
+		</div>
+	</div>
+
+	<div class="modal modal_sign-in hide">
+		<div class="sign-in__block">
+			<button class="modal__close">&#10008;</button>
+			<div class="sign-in__content">
+				<h2 class="sign-in__title">Войти</h2>
+				<form class="sign-in__form login__form">
+					<input type="email" class="sign-in__login sign_in_login" placeholder="Введите логин">
+					<input type="password" class="sign-in__password sign_in_password" placeholder="Введите пароль">
+					<input type="button" value="Войти" class="sign-in__button">
+				</form>
+				<a href="#" class="reg_log sign-in__register">Зарегестрироваться</a>
+			</div>
+		</div>
+	</div>
+	<div class="modal modal_register hide">
+		<div class="sign-in__block">
+			<button class="modal__close">&#10008;</button>
+			<div class="sign-in__content">
+				<h2 class="sign-in__title">Зарегестрироваться</h2>
+				<form class="sign-in__form login__form">
+					<input type="email" class="sign-in__login sign_up_login" placeholder="Введите логин">
+					<input type="password" class="sign-in__password sign_up_password" placeholder="Введите пароль">
+					<div class="sign-in__checkbox"> Я принимаю условия пользования</div>
+					<input type="button" value="Зарегестрироваться" class="sign-in__button">
+				</form>
+				<a href="#" class="reg_log sign-in__logIn">Войти</a>
+			</div>
+		</div>
+	</div>
+	<div class="modal modal_userInfo hide">
+		<div class="sign-in__block">
+			<button class="modal__close">&#10008;</button>
+			<div class="sign-in__content">
+				<h2 class="sign-in__title">Информация</h2>
+				<h3 class="user-info__login"><b>Логин:</b> admin</h3>
+				<div class="user-info__basket">
+					<div class="fas fa-shopping-basket basket"></div>
+					<p class="user-info__basket-text">Вещей в корзине:</p>
+					<b>-</b>
+				</div>
+				<div class="user-info__orders">
+					<div class="fas fa-briefcase orders"></div>
+					<p class="user-info__orders-text">Заказов:</p>
+					<b>-</b>
+				</div>
+				<a href="#" class="sign-in__logIn sign_out">Выйти</a>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>
