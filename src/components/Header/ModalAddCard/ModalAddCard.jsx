@@ -1,82 +1,186 @@
 import React from "react";
+import {
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    Button,
+    makeStyles,
+    TextField,
+    MenuItem,
+    RadioGroup,
+    FormControlLabel,
+    Radio,
+    FormControl,
+    FormLabel,
+} from "@material-ui/core";
 
-const ModalAddCard = () => {
+const useStyles = makeStyles((theme) => {
+    return {
+        input: {
+            marginBottom: theme.spacing(1.5),
+        },
+    };
+});
+
+const ModalAddCard = ({ isOpened, toggleModalStatus }) => {
+    const classes = useStyles();
+
+    const categories = [
+        {
+            value: "toy",
+            label: "Игрушки",
+        },
+        {
+            value: "furniture",
+            label: "Мебель",
+        },
+        {
+            value: "foot",
+            label: "Обувь",
+        },
+        {
+            value: "cloth",
+            label: "Одежда",
+        },
+        {
+            value: "tech",
+            label: "Техника",
+        },
+    ];
+
+    const [currency, setCurrency] = React.useState("EUR");
+
+    const handleChange = (event) => {
+        setCurrency(event.target.value);
+    };
+
+    const [value, setValue] = React.useState("female");
+
+    const handleRadio = (event) => {
+        setValue(event.target.value);
+    };
+
     return (
-        <div className="modal modal__add hide">
-            <div className="modal__block">
-                <h2 className="modal__header">Подать Объявление</h2>
-                <div className="modal__content">
-                    <div>
-                        <img
-                            className="modal__image modal__image-add"
-                            src="img/temp.jpg"
-                            alt="test"
-                        />
-                    </div>
-                    <form className="modal__submit">
-                        <label className="modal__file-label">
-                            <span className="btn modal__file-btn">
-                                Добавить фото
-                            </span>
-                            <input
-                                className="modal__file-input"
-                                type="file"
-                                name="image"
-                                accept="image/*"
-                                required
-                            />
-                        </label>
-
-                        <label>
-                            <span>Категория:</span>
-                            <select name="category">
-                                <option value="toy">Игрушки</option>
-                                <option value="furniture">Мебель</option>
-                                <option value="foot">Обувь</option>
-                                <option value="cloth">Одежда</option>
-                                <option value="tech">Техника</option>
-                            </select>
-                        </label>
-
-                        <label>
-                            <span>Название:</span>
-                            <input name="nameItem" type="text" required />
-                        </label>
-
-                        <label>
-                            <span>Состояние:</span>
-                            <select name="status">
-                                <option value="old">Б/у</option>
-                                <option value="new">Новый</option>
-                            </select>
-                        </label>
-
-                        <label>
-                            <span>Описание:</span>
-                            <textarea
-                                name="descriptionItem"
-                                maxLength="3000"
-                                required
-                            ></textarea>
-                        </label>
-
-                        <label>
-                            <span>Цена:</span>
-                            <input name="costItem" type="number" required />
-                        </label>
-                        <div className="modal__btn-block">
-                            <span className="modal__btn-warning">
-                                Заполните все поля
-                            </span>
-                            <button className="btn modal__btn-submit">
-                                Отправить
-                            </button>
-                        </div>
-                    </form>
+        <Dialog
+            open={isOpened}
+            onClose={toggleModalStatus(false)}
+            aria-labelledby="form-dialog-title"
+        >
+            <DialogTitle id="form-dialog-title">
+                Добавление объявления
+            </DialogTitle>
+            <DialogContent>
+                <div>
+                    <img
+                        className="modal__image modal__image-add"
+                        src="img/temp.jpg"
+                        alt="test"
+                    />
                 </div>
-                <button className="modal__close">&#10008;</button>
-            </div>
-        </div>
+                <form className="modal__submit">
+                    <label className="modal__file-label">
+                        <span className="btn modal__file-btn">
+                            Добавить фото
+                        </span>
+                        <input
+                            className="modal__file-input"
+                            type="file"
+                            name="image"
+                            accept="image/*"
+                            required
+                        />
+                    </label>
+
+                    <TextField
+                        className={classes.input}
+                        id="standard-select-currency"
+                        select
+                        label="Категория"
+                        value={currency}
+                        onChange={handleChange}
+                        variant="outlined"
+                        size="small"
+                        required
+                    >
+                        {categories.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                    <br />
+                    <TextField
+                        className={classes.input}
+                        size="small"
+                        name="nameItem"
+                        id="outlined-basic"
+                        label="Название"
+                        variant="outlined"
+                        required
+                    />
+                    <br />
+                    <FormControl component="fieldset">
+                        <FormLabel component="legend">Состояние</FormLabel>
+                        <RadioGroup
+                            aria-label="state"
+                            name="gender1"
+                            value={value}
+                            onChange={handleRadio}
+                        >
+                            <FormControlLabel
+                                value="true"
+                                control={<Radio />}
+                                label="Новый"
+                            />
+                            <FormControlLabel
+                                value="false"
+                                control={<Radio />}
+                                label="Б/У"
+                            />
+                        </RadioGroup>
+                    </FormControl>
+
+                    <br />
+
+                    <TextField
+                        className={classes.input}
+                        label="Описание"
+                        multiline
+                        rows={4}
+                        variant="outlined"
+                        required
+                    />
+                    <br />
+                    <TextField
+                        className={classes.input}
+                        label="Цена"
+                        type="number"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        variant="outlined"
+                    />
+                    <div className="modal__btn-block">
+                        <span className="modal__btn-warning">
+                            Заполните все поля
+                        </span>
+                    </div>
+                </form>
+                <DialogActions>
+                    <Button
+                        onClick={toggleModalStatus(false)}
+                        variant="contained"
+                        color="inherit"
+                    >
+                        Отмена
+                    </Button>
+                    <Button variant="contained" color="secondary">
+                        Добавить
+                    </Button>
+                </DialogActions>
+            </DialogContent>
+        </Dialog>
     );
 };
 

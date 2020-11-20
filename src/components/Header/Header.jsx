@@ -1,8 +1,49 @@
 import React from "react";
-import ModalAddCard from "./ModalAddCard/ModalAddCard";
+import ModalAddCard from "./ModalAddCard/ModalAddCardContainer";
 import ModalBasket from "./ModalBasket/ModalBasket";
+import Badge from "@material-ui/core/Badge";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
 
-const Header = () => {
+const StyledBadge = withStyles((theme) => ({
+    badge: {
+        right: -3,
+        top: 13,
+        border: `2px solid ${theme.palette.background.paper}`,
+        padding: "0 4px",
+    },
+}))(Badge);
+
+const useStyles = makeStyles((theme) => {
+    return {
+        basketIcon: {
+            color: "#006cf0",
+            marginBottom: theme.spacing(2),
+            marginLeft: theme.spacing(1),
+        },
+        userIcon: {
+            color: "#006cf0",
+            marginBottom: theme.spacing(1.5),
+            marginLeft: theme.spacing(1),
+        },
+    };
+});
+
+const BasketIcon = ({ amount }) => {
+    const classes = useStyles();
+    return (
+        <IconButton aria-label="cart" className={classes.basketIcon}>
+            <StyledBadge badgeContent={amount} color="secondary">
+                <ShoppingCartIcon style={{ fontSize: 30 }} />
+            </StyledBadge>
+        </IconButton>
+    );
+};
+
+const Header = ({ toggleModalStatus }) => {
+    const classes = useStyles();
     return (
         <>
             <header>
@@ -44,12 +85,22 @@ const Header = () => {
                             </ul>
                         </nav>
                         <i className="fas fa-chevron-circle-down menu__open"></i>
-                        <button className="btn add__ad">
+                        <button
+                            className="btn add__ad"
+                            onClick={toggleModalStatus}
+                        >
                             Подать объявление
                         </button>
                         <i className="fas fa-plus add__ad plus"></i>
-                        <i className="fas fa-shopping-basket basket"></i>
-                        <i className="fas fa-user user"></i>
+                        <BasketIcon amount={4} />
+                        <IconButton
+                            aria-label="cart"
+                            className={classes.userIcon}
+                        >
+                            <StyledBadge color="secondary">
+                                <AccountBoxIcon style={{ fontSize: 32 }} />
+                            </StyledBadge>
+                        </IconButton>
                     </div>
                     <div className="search">
                         <form className="search__form">
@@ -64,7 +115,7 @@ const Header = () => {
                 </div>
             </header>
             <ModalAddCard />
-            <ModalBasket/>
+            <ModalBasket />
         </>
     );
 };
