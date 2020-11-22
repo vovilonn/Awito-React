@@ -1,0 +1,2 @@
+[1122/102829.183:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
+[1122/200115.068:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\vovan\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\78c06e36-c877-4deb-9b85-d5fa143bd8cc: Системе не удается найти указанный путь. (0x3)
