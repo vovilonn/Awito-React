@@ -8,7 +8,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         toggleModalStatus: (open) => {
-            debugger;
             dispatch(toggleModalAddCardStatus(open));
         },
     };

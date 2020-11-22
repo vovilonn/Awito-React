@@ -44,6 +44,11 @@ const BasketIcon = ({ amount }) => {
 
 const Header = ({ toggleModalStatus }) => {
     const classes = useStyles();
+
+    const toggleModal = (isOpened) => () => {
+        toggleModalStatus(isOpened);
+    };
+
     return (
         <>
             <header>
@@ -87,7 +92,7 @@ const Header = ({ toggleModalStatus }) => {
                         <i className="fas fa-chevron-circle-down menu__open"></i>
                         <button
                             className="btn add__ad"
-                            onClick={toggleModalStatus}
+                            onClick={toggleModal(true)}
                         >
                             Подать объявление
                         </button>

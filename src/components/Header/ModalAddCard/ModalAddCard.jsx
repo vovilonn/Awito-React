@@ -26,6 +26,10 @@ const useStyles = makeStyles((theme) => {
 const ModalAddCard = ({ isOpened, toggleModalStatus }) => {
     const classes = useStyles();
 
+    const toggleModal = (isOpened) => () => {
+        toggleModalStatus(isOpened);
+    };
+
     const categories = [
         {
             value: "toy",
@@ -64,7 +68,7 @@ const ModalAddCard = ({ isOpened, toggleModalStatus }) => {
     return (
         <Dialog
             open={isOpened}
-            onClose={toggleModalStatus(false)}
+            onClose={toggleModal(false)}
             aria-labelledby="form-dialog-title"
         >
             <DialogTitle id="form-dialog-title">
@@ -169,7 +173,7 @@ const ModalAddCard = ({ isOpened, toggleModalStatus }) => {
                 </form>
                 <DialogActions>
                     <Button
-                        onClick={toggleModalStatus(false)}
+                        onClick={toggleModal(false)}
                         variant="contained"
                         color="inherit"
                     >
