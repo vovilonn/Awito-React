@@ -8,7 +8,7 @@ export const toggleModalAddCardStatus = (open) => {
 
 export const UPDATE_MODAL_ADDCARD_INPUT_TEXT =
     "UPDATE-MODAL-ADDCARD-INPUT-TEXT";
-export const toggleModalAddCardInputText = (element, text) => {
+export const updateModalAddCardInputText = (element, text) => {
     return {
         type: UPDATE_MODAL_ADDCARD_INPUT_TEXT,
         element: element,

@@ -23,46 +23,31 @@ const useStyles = makeStyles((theme) => {
     };
 });
 
-const ModalAddCard = ({ isOpened, toggleModalStatus }) => {
+const ModalAddCard = ({
+    isOpened,
+    toggleModalStatus,
+    currentCategory,
+    updateCurrentCategory,
+    categories,
+    nameText,
+    updateNameText,
+    updateProductCondition,
+    productCondition,
+    productDescription,
+    updateProductDescription,
+    price,
+    updateProductPrice,
+    productImageSrc,
+    changeProductImage,
+}) => {
     const classes = useStyles();
 
     const toggleModal = (isOpened) => () => {
         toggleModalStatus(isOpened);
     };
 
-    const categories = [
-        {
-            value: "toy",
-            label: "Игрушки",
-        },
-        {
-            value: "furniture",
-            label: "Мебель",
-        },
-        {
-            value: "foot",
-            label: "Обувь",
-        },
-        {
-            value: "cloth",
-            label: "Одежда",
-        },
-        {
-            value: "tech",
-            label: "Техника",
-        },
-    ];
-
-    const [currency, setCurrency] = React.useState("EUR");
-
-    const handleChange = (event) => {
-        setCurrency(event.target.value);
-    };
-
-    const [value, setValue] = React.useState("female");
-
-    const handleRadio = (event) => {
-        setValue(event.target.value);
+    const changeCategory = (e) => {
+        updateCurrentCategory(e.target.value);
     };
 
     return (
@@ -78,7 +63,7 @@ const ModalAddCard = ({ isOpened, toggleModalStatus }) => {
                 <div>
                     <img
                         className="modal__image modal__image-add"
-                        src="img/temp.jpg"
+                        src={productImageSrc}
                         alt="test"
                     />
                 </div>
@@ -92,6 +77,7 @@ const ModalAddCard = ({ isOpened, toggleModalStatus }) => {
                             type="file"
                             name="image"
                             accept="image/*"
+                            onChange={changeProductImage}
                             required
                         />
                     </label>
@@ -101,8 +87,8 @@ const ModalAddCard = ({ isOpened, toggleModalStatus }) => {
                         id="standard-select-currency"
                         select
                         label="Категория"
-                        value={currency}
-                        onChange={handleChange}
+                        value={currentCategory}
+                        onChange={changeCategory}
                         variant="outlined"
                         size="small"
                         required
@@ -121,6 +107,8 @@ const ModalAddCard = ({ isOpened, toggleModalStatus }) => {
                         id="outlined-basic"
                         label="Название"
                         variant="outlined"
+                        value={nameText}
+                        onChange={updateNameText}
                         required
                     />
                     <br />
@@ -129,8 +117,8 @@ const ModalAddCard = ({ isOpened, toggleModalStatus }) => {
                         <RadioGroup
                             aria-label="state"
                             name="gender1"
-                            value={value}
-                            onChange={handleRadio}
+                            value={productCondition}
+                            onChange={updateProductCondition}
                         >
                             <FormControlLabel
                                 value="true"
@@ -154,6 +142,8 @@ const ModalAddCard = ({ isOpened, toggleModalStatus }) => {
                         rows={4}
                         variant="outlined"
                         required
+                        value={productDescription}
+                        onChange={updateProductDescription}
                     />
                     <br />
                     <TextField
@@ -164,6 +154,8 @@ const ModalAddCard = ({ isOpened, toggleModalStatus }) => {
                             shrink: true,
                         }}
                         variant="outlined"
+                        value={price}
+                        onChange={updateProductPrice}
                     />
                     <div className="modal__btn-block">
                         <span className="modal__btn-warning">

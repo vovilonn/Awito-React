@@ -1,6 +1,7 @@
+import { getStateFromDB } from "../dataBase";
 import { TOGGLE_MODAL_ADD_CARD_STATUS } from "./actions";
 
-const initialState = {
+const initialState = getStateFromDB().header || {
     modalAddCardIsOpened: false,
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 let baseUser = {
     id: 0,
     login: "Гость",
@@ -298,15 +299,9 @@ modalFileInput.addEventListener("change", function changePhoto(event) {
     reader.readAsBinaryString(file);
 
     reader.addEventListener("load", (event) => {
-        if (infoPhoto.size < 200000) {
-            modalFileBtn.textContent = infoPhoto.filename;
-            infoPhoto.base64 = btoa(event.target.result);
-            modalImageAdd.src = `data:image/jpeg;base64,${infoPhoto.base64}`;
-        } else {
-            modalFileBtn.textContent = "Размер файла не должен превышать 200Кб";
-            modalFileInput.value = "";
-            checkForm();
-        }
+        modalFileBtn.textContent = infoPhoto.filename;
+        infoPhoto.base64 = btoa(event.target.result);
+        modalImageAdd.src = `data:image/jpeg;base64,${infoPhoto.base64}`;
     });
 });
 
