@@ -39,16 +39,19 @@ const initialState = getStateFromDB().catalog || {
 };
 
 const catalogReducer = (state = initialState, action) => {
-    let newState = { ...state };
-    newState.categories = { ...state.categories };
     switch (action.type) {
         case UPDATE_MODAL_ADDCARD_INPUT_TEXT:
-            newState.addCardModal[action.element] = action.newText;
-            return newState;
+            return {
+                ...state,
+                addCardModal: {
+                    ...state.addCardModal,
+                    [action.element]: action.newText,
+                },
+            };
 
         case ADD_NEW_CARD:
-            const category = newState.addCardModal.categories.find((elem) => {
-                if (elem.value === newState.addCardModal.currentCategorie) {
+            const category = state.addCardModal.categories.find((elem) => {
+                if (elem.value === state.addCardModal.currentCategorie) {
                     return elem.label;
                 }
                 return false;
@@ -56,15 +59,18 @@ const catalogReducer = (state = initialState, action) => {
 
             const card = {
                 type: ADD_NEW_CARD,
-                image: newState.addCardModal.productImage,
-                positionName: newState.addCardModal.nameText,
-                description: newState.addCardModal.descriptionText,
-                isNew: newState.addCardModal.isNew,
-                price: newState.addCardModal.price,
+                image: state.addCardModal.productImage,
+                positionName: state.addCardModal.nameText,
+                description: state.addCardModal.descriptionText,
+                isNew: state.addCardModal.isNew,
+                price: state.addCardModal.price,
                 category: category,
             };
-            newState.cards.push(card);
-            return newState;
+
+            return {
+                ...state,
+                cards: [...state.cards, card],
+            };
 
         default:
             return state;

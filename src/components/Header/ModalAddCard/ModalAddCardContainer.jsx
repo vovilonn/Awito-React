@@ -56,11 +56,11 @@ const mapDispatchToProps = (dispatch) => {
             reader.readAsBinaryString(file);
 
             reader.addEventListener("load", (e) => {
-                infoPhoto.base64 = btoa(e.target.result);
-                console.log(e.target.result);
-                console.log(infoPhoto.base64);
-                const src = `data:image/jpeg;base64,${infoPhoto.base64}`;
-                dispatch(updateModalAddCardInputText("productImage", src));
+                // infoPhoto.base64 = btoa(e.target.result);
+                // console.log(e.target.result);
+                // console.log(infoPhoto.base64);
+                // const src = `data:image/jpeg;base64,${infoPhoto.base64}`;
+                dispatch(updateModalAddCardInputText("productImage", "src"));
             });
         },
         addNewCard() {

@@ -16,9 +16,9 @@ const Card = ({ id, nameItem, costItem, image }) => {
 };
 
 const Catalog = ({ cards }) => {
-    const cardsElements = cards.map((card) => {
-        return <Card nameItem={card.positionName} costItem={card.price} />;
-    });
+    console.log(cards);
+    const cardsElements = cards.map((card, index) => 
+         <Card key={index} nameItem={card.positionName} costItem={card.price} />);
 
     return <ul className="catalog">{cardsElements}</ul>;
 };
