@@ -39,6 +39,8 @@ const ModalAddCard = ({
     updateProductPrice,
     productImageSrc,
     changeProductImage,
+    cards,
+    addNewCard,
 }) => {
     const classes = useStyles();
 
@@ -171,7 +173,11 @@ const ModalAddCard = ({
                     >
                         Отмена
                     </Button>
-                    <Button variant="contained" color="secondary">
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={addNewCard}
+                    >
                         Добавить
                     </Button>
                 </DialogActions>

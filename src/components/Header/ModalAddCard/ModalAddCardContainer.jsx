@@ -1,6 +1,7 @@
 import ModalAddCard from "./ModalAddCard";
 import { connect } from "react-redux";
 import {
+    addNewCard,
     toggleModalAddCardStatus,
     updateModalAddCardInputText,
 } from "../../../reducers/actions";
@@ -15,6 +16,7 @@ const mapStateToProps = (state) => {
         productDescription: state.catalog.addCardModal.descriptionText,
         price: state.catalog.addCardModal.price,
         productImageSrc: state.catalog.addCardModal.productImage,
+        cards: state.catalog.cards,
     };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -60,6 +62,10 @@ const mapDispatchToProps = (dispatch) => {
                 const src = `data:image/jpeg;base64,${infoPhoto.base64}`;
                 dispatch(updateModalAddCardInputText("productImage", src));
             });
+        },
+        addNewCard() {
+            dispatch(addNewCard());
+            dispatch(toggleModalAddCardStatus(false));
         },
     };
 };

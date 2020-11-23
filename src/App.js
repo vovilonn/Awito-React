@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import Header from "./components/Header/HeaderContainer";
-import Catalog from "./components/CatalogPage/Catalog";
+import Catalog from "./components/CatalogPage/CatalogContainer";
 import UserPage from "./components/UserPage/UserPage";
 import OrdersPage from "./components/OrdersPage/OrdersPage";
 function App() {

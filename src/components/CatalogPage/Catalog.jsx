@@ -15,19 +15,12 @@ const Card = ({ id, nameItem, costItem, image }) => {
     );
 };
 
-const Catalog = () => {
-    return (
-        <ul className="catalog">
-            <Card id={1} nameItem={"Anigilator"} costItem={30000} />
-            <Card id={1} nameItem={"Anigilator"} costItem={30000} />
-            <Card id={1} nameItem={"Anigilator"} costItem={30000} />
-            <Card id={1} nameItem={"Anigilator"} costItem={30000} />
-            <Card id={1} nameItem={"Anigilator"} costItem={30000} />
-            <Card id={1} nameItem={"Anigilator"} costItem={30000} />
-            <Card id={1} nameItem={"Anigilator"} costItem={30000} />
-            <Card id={1} nameItem={"Anigilator"} costItem={30000} />
-        </ul>
-    );
+const Catalog = ({ cards }) => {
+    const cardsElements = cards.map((card) => {
+        return <Card nameItem={card.positionName} costItem={card.price} />;
+    });
+
+    return <ul className="catalog">{cardsElements}</ul>;
 };
 
 export default Catalog;

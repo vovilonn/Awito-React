@@ -15,3 +15,23 @@ export const updateModalAddCardInputText = (element, text) => {
         newText: text,
     };
 };
+
+export const ADD_NEW_CARD = "ADD-NEW-CARD";
+export const addNewCard = (
+    image,
+    name,
+    description,
+    category,
+    isNew,
+    price
+) => {
+    return {
+        type: ADD_NEW_CARD,
+        image: image,
+        positionName: name,
+        description: description,
+        category: category,
+        isNew: isNew,
+        price: price,
+    };
+};
