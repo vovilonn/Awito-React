@@ -1,6 +1,10 @@
 import { getStateFromDB } from "../dataBase";
 
-const { UPDATE_MODAL_ADDCARD_INPUT_TEXT, ADD_NEW_CARD } = require("./actions");
+const {
+    UPDATE_MODAL_ADDCARD_INPUT_TEXT,
+    ADD_NEW_CARD,
+    RESET_FORM,
+} = require("./actions");
 
 const initialState = getStateFromDB().catalog || {
     addCardModal: {
@@ -70,6 +74,20 @@ const catalogReducer = (state = initialState, action) => {
             return {
                 ...state,
                 cards: [...state.cards, card],
+            };
+
+        case RESET_FORM:
+            return {
+                ...state,
+                addCardModal: {
+                    ...state.addCardModal,
+                    currentCategorie: "tech",
+                    nameText: "",
+                    isNew: true,
+                    descriptionText: "",
+                    price: 0,
+                    productImage: "img/temp.jpg",
+                },
             };
 
         default:

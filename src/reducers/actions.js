@@ -35,3 +35,8 @@ export const addNewCard = (
         price: price,
     };
 };
+
+export const RESET_FORM = "RESET-FORM";
+export const resetForm = () => ({
+    type: RESET_FORM,
+});

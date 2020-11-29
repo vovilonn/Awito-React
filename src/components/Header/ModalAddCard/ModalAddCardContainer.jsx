@@ -2,6 +2,7 @@ import ModalAddCard from "./ModalAddCard";
 import { connect } from "react-redux";
 import {
     addNewCard,
+    resetForm,
     toggleModalAddCardStatus,
     updateModalAddCardInputText,
 } from "../../../reducers/actions";
@@ -67,6 +68,8 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(addNewCard());
             dispatch(toggleModalAddCardStatus(false));
         },
+
+        resetForm: () => dispatch(resetForm()),
     };
 };
 

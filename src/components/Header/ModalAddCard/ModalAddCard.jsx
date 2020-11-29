@@ -39,13 +39,19 @@ const ModalAddCard = ({
     updateProductPrice,
     productImageSrc,
     changeProductImage,
-    cards,
     addNewCard,
+    resetForm,
 }) => {
     const classes = useStyles();
 
     const toggleModal = (isOpened) => () => {
         toggleModalStatus(isOpened);
+        resetForm();
+    };
+
+    const onAddNewCard = () => {
+        addNewCard();
+        resetForm();
     };
 
     const changeCategory = (e) => {
@@ -176,7 +182,7 @@ const ModalAddCard = ({
                     <Button
                         variant="contained"
                         color="secondary"
-                        onClick={addNewCard}
+                        onClick={onAddNewCard}
                     >
                         Добавить
                     </Button>
