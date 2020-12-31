@@ -1,9 +1,10 @@
 import React from "react";
 import "./style.css";
 import Header from "./components/Header/HeaderContainer";
-import Catalog from "./components/CatalogPage/CatalogContainer";
+import Catalog from "./components/CatalogPage/Catalog";
 import UserPage from "./components/UserPage/UserPage";
 import OrdersPage from "./components/OrdersPage/OrdersPage";
+import ProductModal from "./components/CatalogPage/ProductModal";
 function App() {
     return (
         <>
@@ -15,6 +16,7 @@ function App() {
             </main>
             <UserPage />
             <OrdersPage />
+            <ProductModal />
         </>
     );
 }

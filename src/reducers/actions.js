@@ -1,8 +1,8 @@
 export const TOGGLE_MODAL_ADD_CARD_STATUS = "TOGGLE-MODAL-ADD-CARD-STATUS";
-export const toggleModalAddCardStatus = (open) => {
+export const toggleModalAddCardStatus = (status) => {
     return {
         type: TOGGLE_MODAL_ADD_CARD_STATUS,
-        isOpened: open,
+        isOpened: status,
     };
 };
 
@@ -39,4 +39,16 @@ export const addNewCard = (
 export const RESET_FORM = "RESET-FORM";
 export const resetForm = () => ({
     type: RESET_FORM,
+});
+
+export const CLOSE_PRODUCT_MODAL = "CLOSE-MODAL-PRODUCT-STATUS";
+export const closeModalProduct = (status, productId) => ({
+    type: CLOSE_PRODUCT_MODAL,
+    isOpened: status,
+});
+
+export const OPEN_PRODUCT_MODAL = "OPEN-PRODUCT-MODAL";
+export const openProductModal = (productId) => ({
+    type: OPEN_PRODUCT_MODAL,
+    productId: productId,
 });

@@ -22,23 +22,22 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        toggleModalStatus(open) {
-            dispatch(toggleModalAddCardStatus(open));
-        },
-        updateCurrentCategory(category) {
-            dispatch(updateModalAddCardInputText("currentCategorie", category));
-        },
-        updateNameText(e) {
-            dispatch(updateModalAddCardInputText("nameText", e.target.value));
-        },
-        updateProductCondition(e) {
-            dispatch(updateModalAddCardInputText("isNew", e.target.value));
-        },
-        updateProductDescription(e) {
+        toggleModalStatus: (open) => dispatch(toggleModalAddCardStatus(open)),
+
+        updateCurrentCategory: (category) =>
+            dispatch(updateModalAddCardInputText("currentCategorie", category)),
+
+        updateNameText: (e) =>
+            dispatch(updateModalAddCardInputText("nameText", e.target.value)),
+
+        updateProductCondition: (e) =>
+            dispatch(updateModalAddCardInputText("isNew", e.target.value)),
+
+        updateProductDescription: (e) =>
             dispatch(
                 updateModalAddCardInputText("descriptionText", e.target.value)
-            );
-        },
+            ),
+
         updateProductPrice(e) {
             if (+e.target.value >= 0) {
                 dispatch(updateModalAddCardInputText("price", e.target.value));

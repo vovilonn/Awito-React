@@ -4,6 +4,8 @@ const {
     UPDATE_MODAL_ADDCARD_INPUT_TEXT,
     ADD_NEW_CARD,
     RESET_FORM,
+    CLOSE_PRODUCT_MODAL,
+    OPEN_PRODUCT_MODAL,
 } = require("./actions");
 
 const initialState = getStateFromDB().catalog || {
@@ -39,6 +41,10 @@ const initialState = getStateFromDB().catalog || {
         productImage: "img/temp.jpg",
         imageFile: null,
     },
+    productModal: {
+        isOpened: false,
+        currentPositionId: null,
+    },
     cards: [],
 };
 
@@ -54,15 +60,18 @@ const catalogReducer = (state = initialState, action) => {
             };
 
         case ADD_NEW_CARD:
-            const category = state.addCardModal.categories.find((elem) => {
-                if (elem.value === state.addCardModal.currentCategorie) {
-                    return elem.label;
+            const category = state.addCardModal.categories.find((categorie) => {
+                if (categorie.value === state.addCardModal.currentCategorie) {
+                    return categorie.label;
                 }
                 return false;
             });
 
+            const id = state.cards.length + 1;
+
             const card = {
                 type: ADD_NEW_CARD,
+                id: id,
                 image: state.addCardModal.productImage,
                 positionName: state.addCardModal.nameText,
                 description: state.addCardModal.descriptionText,
@@ -89,6 +98,28 @@ const catalogReducer = (state = initialState, action) => {
                     productImage: "img/temp.jpg",
                 },
             };
+
+        case CLOSE_PRODUCT_MODAL: {
+            return {
+                ...state,
+                productModal: {
+                    ...state.productModal,
+                    isOpened: false,
+                    currentPositionId: null,
+                },
+            };
+        }
+
+        case OPEN_PRODUCT_MODAL: {
+            return {
+                ...state,
+                productModal: {
+                    ...state.productModal,
+                    currentPositionId: action.productId,
+                    isOpened: true,
+                },
+            };
+        }
 
         default:
             return state;

@@ -1,27 +1,47 @@
 import React from "react";
+import { connect } from "react-redux";
+import { closeModalProduct, openProductModal } from "../../reducers/actions";
 
-const Card = ({ id, nameItem, costItem, image }) => {
-    let srcImg = "data:image/jpeg;base64," + image;
-    srcImg = "./img/temp.jpg";
-
+const Catalog = ({ cards, openProductModal }) => {
     return (
-        <li className="card" key={id}>
-            <img className="card__image" src={srcImg} alt="test" />
-            <div className="card__description">
-                <h3 className="card__header">{nameItem}</h3>
-                <div className="card__price">{costItem} ₽</div>
-            </div>
-        </li>
+        <ul className="catalog">
+            {cards.map((card, index) => {
+                return (
+                    <li
+                        className="card"
+                        key={index}
+                        id={card.id}
+                        onClick={() => {
+                            openProductModal(card.id);
+                        }}
+                    >
+                        <img
+                            className="card__image"
+                            src={card.image}
+                            alt="test"
+                        />
+                        <div className="card__description">
+                            <h3 className="card__header">
+                                {card.positionName}
+                            </h3>
+                            <div className="card__price">{card.price} ₽</div>
+                        </div>
+                    </li>
+                );
+            })}
+        </ul>
     );
 };
 
-const Catalog = ({ cards }) => {
-    console.log(cards);
-    const cardsElements = cards.map((card, index) => (
-        <Card key={index} nameItem={card.positionName} costItem={card.price} />
-    ));
+const mapStateToProps = (state) => ({
+    cards: state.catalog.cards || [],
+});
 
-    return <ul className="catalog">{cardsElements}</ul>;
-};
+const mapDispatchToProps = (dispatch) => ({
+    closeProductModal: () => dispatch(closeModalProduct()),
+    openProductModal: (id) => dispatch(openProductModal(id)),
+});
 
-export default Catalog;
+const CatalogContainer = connect(mapStateToProps, mapDispatchToProps)(Catalog);
+
+export default CatalogContainer;
