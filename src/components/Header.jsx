@@ -1,11 +1,11 @@
 import React from "react";
-import ModalAddCard from "./ModalAddCard/ModalAddCardContainer";
-import ModalBasket from "./ModalBasket/ModalBasket";
 import Badge from "@material-ui/core/Badge";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import { connect } from "react-redux";
+import { toggleModalAddCardStatus } from "../reducers/actions";
 
 const StyledBadge = withStyles((theme) => ({
     badge: {
@@ -119,10 +119,21 @@ const Header = ({ toggleModalStatus }) => {
                     </div>
                 </div>
             </header>
-            <ModalAddCard />
-            <ModalBasket />
         </>
     );
 };
 
-export default Header;
+const mapStateToProps = (state) => {
+    return {};
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        toggleModalStatus: (open) => {
+            dispatch(toggleModalAddCardStatus(open));
+        },
+    };
+};
+
+const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(Header);
+
+export default HeaderContainer;

@@ -105,7 +105,6 @@ const catalogReducer = (state = initialState, action) => {
                 productModal: {
                     ...state.productModal,
                     isOpened: false,
-                    currentPositionId: null,
                 },
             };
         }
