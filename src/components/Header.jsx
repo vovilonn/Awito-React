@@ -50,76 +50,65 @@ const Header = ({ toggleModalStatus }) => {
     };
 
     return (
-        <>
-            <header>
-                <div className="container">
-                    <div className="header">
-                        <i className="fas fa-bars burger-menu"></i>
-                        <div className="logo">
-                            <a href="index.html">
-                                <img src="img/logo.svg" alt="" />
-                            </a>
-                        </div>
-                        <nav className="menu">
-                            <ul className="menu__container">
-                                <li className="menu__link">
-                                    <a href="/" data-category="cloth">
-                                        Одежда
-                                    </a>
-                                </li>
-                                <li className="menu__link">
-                                    <a href="/" data-category="foot">
-                                        Обувь
-                                    </a>
-                                </li>
-                                <li className="menu__link">
-                                    <a href="/" data-category="toy">
-                                        Игрушки
-                                    </a>
-                                </li>
-                                <li className="menu__link">
-                                    <a href="/" data-category="furniture">
-                                        Мебель
-                                    </a>
-                                </li>
-                                <li className="menu__link">
-                                    <a href="/" data-category="tech">
-                                        Техника
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <i className="fas fa-chevron-circle-down menu__open"></i>
-                        <button
-                            className="btn add__ad"
-                            onClick={toggleModal(true)}
-                        >
-                            Подать объявление
-                        </button>
-                        <i className="fas fa-plus add__ad plus"></i>
-                        <BasketIcon amount={4} />
-                        <IconButton
-                            aria-label="cart"
-                            className={classes.userIcon}
-                        >
-                            <StyledBadge color="secondary">
-                                <AccountBoxIcon style={{ fontSize: 32 }} />
-                            </StyledBadge>
-                        </IconButton>
+        <header>
+            <div className="container">
+                <div className="header">
+                    <i className="fas fa-bars burger-menu"></i>
+                    <div className="logo">
+                        <a href="index.html">
+                            <img src="img/logo.svg" alt="" />
+                        </a>
                     </div>
-                    <div className="search">
-                        <form className="search__form">
-                            <label className="search__label">
-                                <input
-                                    className="search__input"
-                                    type="search"
-                                />
-                            </label>
-                        </form>
-                    </div>
+                    <nav className="menu">
+                        <ul className="menu__container">
+                            <li className="menu__link">
+                                <a href="/" data-category="cloth">
+                                    Одежда
+                                </a>
+                            </li>
+                            <li className="menu__link">
+                                <a href="/" data-category="foot">
+                                    Обувь
+                                </a>
+                            </li>
+                            <li className="menu__link">
+                                <a href="/" data-category="toy">
+                                    Игрушки
+                                </a>
+                            </li>
+                            <li className="menu__link">
+                                <a href="/" data-category="furniture">
+                                    Мебель
+                                </a>
+                            </li>
+                            <li className="menu__link">
+                                <a href="/" data-category="tech">
+                                    Техника
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <i className="fas fa-chevron-circle-down menu__open"></i>
+                    <button className="btn add__ad" onClick={toggleModal(true)}>
+                        Подать объявление
+                    </button>
+                    <i className="fas fa-plus add__ad plus"></i>
+                    <BasketIcon amount={4} />
+                    <IconButton aria-label="cart" className={classes.userIcon}>
+                        <StyledBadge color="secondary">
+                            <AccountBoxIcon style={{ fontSize: 32 }} />
+                        </StyledBadge>
+                    </IconButton>
                 </div>
-            </header>
-        </>
+                <div className="search">
+                    <form className="search__form">
+                        <label className="search__label">
+                            <input className="search__input" type="search" />
+                        </label>
+                    </form>
+                </div>
+            </div>
+        </header>
     );
 };
 
