@@ -22,13 +22,11 @@ import {
     updateModalAddCardInputText,
 } from "../../reducers/actions";
 
-const useStyles = makeStyles((theme) => {
-    return {
-        input: {
-            marginBottom: theme.spacing(1.5),
-        },
-    };
-});
+const useStyles = makeStyles((theme) => ({
+    input: {
+        marginBottom: theme.spacing(1.5),
+    },
+}));
 
 const ModalAddCard = ({
     isOpened,

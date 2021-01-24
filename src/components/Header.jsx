@@ -5,7 +5,10 @@ import IconButton from "@material-ui/core/IconButton";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import { connect } from "react-redux";
-import { toggleModalAddCardStatus } from "../reducers/actions";
+import {
+    toggleModalAddCardStatus,
+    toggleBasketModal,
+} from "../reducers/actions";
 
 const StyledBadge = withStyles((theme) => ({
     badge: {
@@ -42,11 +45,11 @@ const BasketIcon = ({ amount }) => {
     );
 };
 
-const Header = ({ toggleModalStatus }) => {
+const Header = ({ toggleModalAddCard, toggleModalBasket }) => {
     const classes = useStyles();
 
     const toggleModal = (isOpened) => () => {
-        toggleModalStatus(isOpened);
+        toggleModalAddCard(isOpened);
     };
 
     return (
@@ -92,8 +95,9 @@ const Header = ({ toggleModalStatus }) => {
                     <button className="btn add__ad" onClick={toggleModal(true)}>
                         Подать объявление
                     </button>
-                    <i className="fas fa-plus add__ad plus"></i>
-                    <BasketIcon amount={4} />
+                    <div onClick={toggleModalBasket.bind(null, true)}>
+                        <BasketIcon amount={4} />
+                    </div>
                     <IconButton aria-label="cart" className={classes.userIcon}>
                         <StyledBadge color="secondary">
                             <AccountBoxIcon style={{ fontSize: 32 }} />
@@ -112,16 +116,12 @@ const Header = ({ toggleModalStatus }) => {
     );
 };
 
-const mapStateToProps = (state) => {
-    return {};
-};
-const mapDispatchToProps = (dispatch) => {
-    return {
-        toggleModalStatus: (open) => {
-            dispatch(toggleModalAddCardStatus(open));
-        },
-    };
-};
+const mapStateToProps = (state) => ({});
+const mapDispatchToProps = (dispatch) => ({
+    toggleModalAddCard: (isOpened) =>
+        dispatch(toggleModalAddCardStatus(isOpened)),
+    toggleModalBasket: (isOpened) => dispatch(toggleBasketModal(isOpened)),
+});
 
 const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(Header);
 

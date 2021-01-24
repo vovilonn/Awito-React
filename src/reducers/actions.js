@@ -41,14 +41,26 @@ export const resetForm = () => ({
     type: RESET_FORM,
 });
 
-export const CLOSE_PRODUCT_MODAL = "CLOSE-MODAL-PRODUCT-STATUS";
-export const closeModalProduct = (status, productId) => ({
+export const CLOSE_PRODUCT_MODAL = "TOGGLE-MODAL-PRODUCT";
+export const closeProductModal = (isOpened) => ({
     type: CLOSE_PRODUCT_MODAL,
-    isOpened: status,
+    isOpened: isOpened,
 });
 
 export const OPEN_PRODUCT_MODAL = "OPEN-PRODUCT-MODAL";
 export const openProductModal = (productId) => ({
     type: OPEN_PRODUCT_MODAL,
     productId: productId,
+});
+
+export const TOGGLE_BASKET_MODAL = "OPEN_BASKET_MODAL";
+export const toggleBasketModal = (isOpened) => ({
+    type: TOGGLE_BASKET_MODAL,
+    isOpened: isOpened,
+});
+
+export const ADD_POSITION_IN_BASKET = "ADD-POSITION-IN-BASKET";
+export const addPositionInBasket = (positionId) => ({
+    type: ADD_POSITION_IN_BASKET,
+    positionId: positionId,
 });

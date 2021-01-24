@@ -2,8 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import App from "./App";
-import { updateDB } from "./dataBase";
+import { updateLS } from "./localStorage";
 import store from "./redux-store";
+
 
 ReactDOM.render(
     <Provider store={store}>
@@ -12,4 +13,4 @@ ReactDOM.render(
     document.getElementById("root")
 );
 
-store.subscribe(updateDB(store.getState.bind(store)));
+store.subscribe(updateLS(store.getState.bind(store)));

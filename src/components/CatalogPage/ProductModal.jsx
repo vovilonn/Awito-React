@@ -7,8 +7,14 @@ import {
     DialogActions,
     Button,
 } from "@material-ui/core";
-import { closeModalProduct } from "../../reducers/actions";
-function ProductModal({ isOpened, closeModal, currentPosition }) {
+import { addPositionInBasket, closeProductModal } from "../../reducers/actions";
+
+const ProductModal = ({
+    isOpened,
+    closeModal,
+    currentPosition,
+    addPositionInBasket,
+}) => {
     const data = currentPosition ? currentPosition : {};
     return (
         <Dialog
@@ -30,10 +36,12 @@ function ProductModal({ isOpened, closeModal, currentPosition }) {
                 <p>{data.description}</p>
                 <strong>{data.price} ₽</strong>
                 <p>
-                    Категория: <strong>{data.category.label}</strong>
+                    Категория:{" "}
+                    <strong>{data.category ? data.category.label : ""}</strong>
                 </p>
                 <p>
-                    Состояние: <strong>{data.isNew ? "Новый" : "Б/У"}</strong>
+                    Состояние:{" "}
+                    <strong>{data.isNew === "true" ? "Новый" : "Б/У"}</strong>
                 </p>
 
                 <DialogActions>
@@ -44,14 +52,21 @@ function ProductModal({ isOpened, closeModal, currentPosition }) {
                     >
                         Отмена
                     </Button>
-                    <Button variant="contained" color="secondary">
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => {
+                            addPositionInBasket(data.id);
+                            closeModal();
+                        }}
+                    >
                         Добавить
                     </Button>
                 </DialogActions>
             </DialogContent>
         </Dialog>
     );
-}
+};
 
 const mapStateToProps = (state) => ({
     isOpened: state.catalog.productModal.isOpened,
@@ -61,7 +76,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    closeModal: () => dispatch(closeModalProduct()),
+    closeModal: () => dispatch(closeProductModal()),
+    addPositionInBasket: (positionId) => {
+        dispatch(addPositionInBasket(positionId));
+    },
 });
 
 const ProductModalContainer = connect(

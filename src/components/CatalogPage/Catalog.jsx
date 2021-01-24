@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { closeModalProduct, openProductModal } from "../../reducers/actions";
+import { closeProductModal, openProductModal } from "../../reducers/actions";
 
 const Catalog = ({ cards, openProductModal }) => {
     return (
@@ -38,7 +38,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    closeProductModal: () => dispatch(closeModalProduct()),
+    closeProductModal: () => dispatch(closeProductModal()),
     openProductModal: (id) => dispatch(openProductModal(id)),
 });
 

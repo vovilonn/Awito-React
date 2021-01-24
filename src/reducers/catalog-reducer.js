@@ -1,4 +1,4 @@
-import { getStateFromDB } from "../dataBase";
+import { getStateFromLS } from "../localStorage";
 
 const {
     UPDATE_MODAL_ADDCARD_INPUT_TEXT,
@@ -6,9 +6,11 @@ const {
     RESET_FORM,
     CLOSE_PRODUCT_MODAL,
     OPEN_PRODUCT_MODAL,
+    TOGGLE_BASKET_MODAL,
+    ADD_POSITION_IN_BASKET,
 } = require("./actions");
 
-const initialState = getStateFromDB().catalog || {
+const initialState = getStateFromLS().catalog || {
     addCardModal: {
         categories: [
             {
@@ -44,6 +46,10 @@ const initialState = getStateFromDB().catalog || {
     productModal: {
         isOpened: false,
         currentPositionId: null,
+    },
+    basket: {
+        isModalOpened: false,
+        positions: [],
     },
     cards: [],
 };
@@ -116,6 +122,33 @@ const catalogReducer = (state = initialState, action) => {
                     ...state.productModal,
                     currentPositionId: action.productId,
                     isOpened: true,
+                },
+            };
+        }
+
+        case TOGGLE_BASKET_MODAL: {
+            return {
+                ...state,
+                basket: {
+                    ...state.basket,
+                    isModalOpened: action.isOpened,
+                },
+            };
+        }
+
+        case ADD_POSITION_IN_BASKET: {
+            const targetItem = state.cards.find(
+                (e) => e.id === action.positionId
+            );
+
+            return {
+                ...state,
+                basket: {
+                    ...state.basket,
+                    positions: {
+                        ...state.basket.positions,
+                        targetItem,
+                    },
                 },
             };
         }
