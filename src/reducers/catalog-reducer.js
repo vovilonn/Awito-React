@@ -145,10 +145,7 @@ const catalogReducer = (state = initialState, action) => {
                 ...state,
                 basket: {
                     ...state.basket,
-                    positions: {
-                        ...state.basket.positions,
-                        targetItem,
-                    },
+                    positions: [...state.basket.positions, targetItem],
                 },
             };
         }

@@ -45,7 +45,12 @@ const BasketIcon = ({ amount }) => {
     );
 };
 
-const Header = ({ toggleModalAddCard, toggleModalBasket }) => {
+const Header = (props) => {
+    const {
+        toggleModalAddCard,
+        toggleModalBasket,
+        basketProductsAmount,
+    } = props;
     const classes = useStyles();
 
     const toggleModal = (isOpened) => () => {
@@ -96,7 +101,7 @@ const Header = ({ toggleModalAddCard, toggleModalBasket }) => {
                         Подать объявление
                     </button>
                     <div onClick={toggleModalBasket.bind(null, true)}>
-                        <BasketIcon amount={4} />
+                        <BasketIcon amount={basketProductsAmount} />
                     </div>
                     <IconButton aria-label="cart" className={classes.userIcon}>
                         <StyledBadge color="secondary">
@@ -116,7 +121,9 @@ const Header = ({ toggleModalAddCard, toggleModalBasket }) => {
     );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+    basketProductsAmount: state.catalog.basket.positions.length,
+});
 const mapDispatchToProps = (dispatch) => ({
     toggleModalAddCard: (isOpened) =>
         dispatch(toggleModalAddCardStatus(isOpened)),
